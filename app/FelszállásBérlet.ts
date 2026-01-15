@@ -1,0 +1,21 @@
+import Felszállás from "@/app/Felszállás";
+import { BlobOptions } from "buffer";
+
+export default class FelszállásBérlet extends Felszállás {
+  #típus: string;
+  #érvényes: Date;
+
+  get érvényesFelszállás(): boolean{
+    return this._idő < this.#érvényes
+  }
+
+  constructor(sor: string) {
+    super(sor);
+    const m: string[] = sor.split(" ");
+    this.#típus = m[3];
+    const év = parseInt(m[4].slice(0, 4));
+    const hónap = parseInt(m[4].slice(4, 6));
+    const nap = parseInt(m[4].slice(6, 8));
+    this.#érvényes = new Date(év, hónap - 1, nap, 23, 59)
+  }
+}
