@@ -8,7 +8,15 @@ export default abstract class Felszállás {
   }
 
   get megállóSorszáma(): number {
-    return this._megállóSorszáma
+    return this._megállóSorszáma;
+  }
+
+  get ezIngyenesUtazás(): boolean {
+    return false;
+  }
+
+  get ezKedvezményesUtazás(): boolean {
+    return false;
   }
 
   public constructor(sor: string) {
