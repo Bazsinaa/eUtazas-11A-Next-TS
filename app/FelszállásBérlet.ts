@@ -9,6 +9,20 @@ export default class FelszállásBérlet extends Felszállás {
     return this._idő <= this.#érvényes;
   }
 
+    get ezIngyenesUtazás(): boolean {
+    if (this.érvényesFelszállás && ["NYP", "RVS", "GYK"].includes(this.#típus)){
+      return true;
+    }
+    return false;
+  }
+
+  get ezKedvezményesUtazás(): boolean {
+    if (this.érvényesFelszállás && ["TAB", "NYB"].includes(this.#típus)){
+      return true;
+    }
+    return false;
+  }
+
   constructor(sor: string) {
     super(sor);
     const m: string[] = sor.split(" ");

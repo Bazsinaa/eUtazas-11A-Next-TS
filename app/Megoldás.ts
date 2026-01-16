@@ -1,4 +1,3 @@
-
 import fs from "fs";
 import Felszállás from "@/app/Felszállás";
 import FelszállásBérlet from "@/app/FelszállásBérlet";
@@ -36,6 +35,20 @@ export default class Megoldás {
     const max: MaxKeresés = { maxFelszálló: -1, maxMegálló: -1 };
     const statMap: Map<number, number> = new Map<number, number>();
 
+    this.#utasadatok.forEach((e) => {
+      if (statMap.has(e.megállóSorszáma)) {
+        statMap.set(e.megállóSorszáma, statMap.get(e.megállóSorszáma)! + 1);
+      } else {
+        statMap.set(e.megállóSorszáma, 1);
+      }
+    });
+
+    statMap.forEach((érték, kulcs) => {
+      if (érték > max.maxFelszálló) {
+        max.maxFelszálló = érték;
+        max.maxMegálló = kulcs;
+      }
+    });
     return max;
   }
 
