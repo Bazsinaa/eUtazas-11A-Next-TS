@@ -1,4 +1,3 @@
-import { BlobOptions } from "buffer";
 import Felszállás from "@/app/Felszállás";
 
 export default class FelszállásBérlet extends Felszállás {
