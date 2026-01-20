@@ -1,4 +1,5 @@
 import Felszállás from "@/app/Felszállás";
+import dayjs from "dayjs";
 
 export default class FelszállásBérlet extends Felszállás {
   #típus: string;
@@ -21,6 +22,11 @@ export default class FelszállásBérlet extends Felszállás {
     }
     return false;
   }
+
+  get lejárHáromNap(): boolean {
+    return this.érvényesFelszállás && dayjs(this.#érvényes).diff(this._idő, "day") < 3;
+  }
+
 
   constructor(sor: string) {
     super(sor);
